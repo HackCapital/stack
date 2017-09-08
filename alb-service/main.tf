@@ -85,9 +85,19 @@ variable "internal_zone_id" {
  * Options.
  */
 
-variable "healthcheck" {
+variable "health_path" {
   description = "Path to a healthcheck endpoint"
   default     = "/"
+}
+
+variable "health_matcher" {
+  description = "Expected HTTP Response code"
+  default     = "200"
+}
+
+variable "health_interval" {
+  description = "Healthcheck check frequency"
+  default     = "30"
 }
 
 variable "container_port" {
@@ -189,7 +199,9 @@ module "alb" {
   subnet_ids         = "${var.subnet_ids}"
   external_dns_name  = "${coalesce(var.external_dns_name, module.task.name)}"
   internal_dns_name  = "${coalesce(var.internal_dns_name, module.task.name)}"
-  healthcheck        = "${var.healthcheck}"
+  health_path        = "${var.health_path}"
+  health_interval    = "${var.health_interval}"
+  health_matcher     = "${var.health_matcher}"
   external_zone_id   = "${var.external_zone_id}"
   internal_zone_id   = "${var.internal_zone_id}"
   security_groups    = "${var.security_groups}"
