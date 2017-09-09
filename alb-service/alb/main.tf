@@ -24,9 +24,18 @@ variable "security_groups" {
   description = "Comma separated list of security group IDs"
 }
 
-variable "healthcheck" {
-  description = "Healthcheck path"
+variable "health_path" {
+  description = "Path to a healthcheck endpoint"
 }
+
+variable "health_matcher" {
+  description = "Expected HTTP Response code"
+}
+
+variable "health_interval" {
+  description = "Healthcheck check frequency"
+}
+
 
 variable "log_bucket" {
   description = "S3 bucket name to write ELB logs into"
@@ -87,8 +96,9 @@ resource "aws_alb_target_group" "main" {
     unhealthy_threshold = 2
     timeout             = 5
     protocol            = "HTTP"
-    path                = "${var.healthcheck}"
-    interval            = 30
+    path                = "${var.health_path}"
+    interval            = "${var.health_interval}"
+    matcher             = "${var.health_matcher}"
   }
 }
 
