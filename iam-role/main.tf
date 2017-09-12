@@ -43,7 +43,9 @@ resource "aws_iam_role_policy" "default_ecs_service_role_policy" {
         "ec2:Describe*",
         "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
         "elasticloadbalancing:Describe*",
-        "elasticloadbalancing:RegisterInstancesWithLoadBalancer"
+        "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+        "elasticloadbalancing:RegisterTargets",
+        "elasticloadbalancing:DeregisterTargets"
       ],
       "Resource": "*"
     }
@@ -97,7 +99,7 @@ EOF
 resource "aws_iam_instance_profile" "default_ecs" {
   name  = "ecs-instance-profile-${var.name}-${var.environment}"
   path  = "/"
-  roles = ["${aws_iam_role.default_ecs_role.name}"]
+  role  = "${aws_iam_role.default_ecs_role.name}"
 }
 
 output "default_ecs_role_id" {

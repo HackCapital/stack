@@ -63,6 +63,10 @@ variable "vpc_id" {
   description = "The id of the VPC."
 }
 
+variable "deregistration_delay" {
+  description = "The amount time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused."
+}
+
 /**
  * Resources.
  */
@@ -80,11 +84,12 @@ resource "aws_alb" "main" {
 }
 
 resource "aws_alb_target_group" "main" {
-  name       = "alb-target-${var.name}"
-  port       = "${var.port}"
-  protocol   = "HTTP"
-  vpc_id     = "${var.vpc_id}"
-  depends_on = ["aws_alb.main"]
+  name                  = "alb-target-${var.name}"
+  port                  = "${var.port}"
+  protocol              = "HTTP"
+  vpc_id                = "${var.vpc_id}"
+  depends_on            = ["aws_alb.main"]
+  deregistration_delay  = "${var.deregistration_delay}"
 
   stickiness {
     type    = "lb_cookie"
