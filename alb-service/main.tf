@@ -43,7 +43,7 @@ variable "security_groups" {
   description = "Comma separated list of security group IDs that will be passed to the ALB module"
 }
 
-variable "host_port" {
+variable "port" {
   description = "The container host port"
 }
 
@@ -189,7 +189,7 @@ module "task" {
   [
     {
       "containerPort": ${var.container_port},
-      "hostPort": ${var.host_port}
+      "hostPort": ${var.port}
     }
   ]
 EOF
