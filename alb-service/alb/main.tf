@@ -67,6 +67,10 @@ variable "deregistration_delay" {
   description = "The amount time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused."
 }
 
+variable "internal" {
+  description = "Make this an internal load balancer"
+}
+
 /**
  * Resources.
  */
@@ -74,7 +78,7 @@ variable "deregistration_delay" {
 # Create a new load balancer
 resource "aws_alb" "main" {
   name            = "${var.name}"
-  internal        = false
+  internal        = "${var.internal}"
   subnets         = ["${split(",",var.subnet_ids)}"]
   security_groups = ["${split(",",var.security_groups)}"]
 

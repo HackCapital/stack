@@ -145,6 +145,11 @@ variable "deployment_maximum_percent" {
   default     = 200
 }
 
+variable "internal" {
+  description = "Make this an internal load balancer"
+  default = false
+}
+
 variable vpc_id {
   description = "The id of the VPC."
 }
@@ -214,6 +219,7 @@ module "alb" {
   log_bucket           = "${var.log_bucket}"
   ssl_certificate_id   = "${var.ssl_certificate_id}"
   vpc_id               = "${var.vpc_id}"
+  internal             = "${var.internal}"
 }
 
 /**
