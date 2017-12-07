@@ -69,6 +69,7 @@ variable "deregistration_delay" {
 
 variable "internal" {
   description = "Make this an internal load balancer"
+  default = false
 }
 
 /**

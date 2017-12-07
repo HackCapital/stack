@@ -150,7 +150,7 @@ variable "internal" {
   default = false
 }
 
-variable vpc_id {
+variable "vpc_id" {
   description = "The id of the VPC."
 }
 
