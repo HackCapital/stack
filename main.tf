@@ -147,6 +147,12 @@ variable "logs_expiration_days" {
   default = 30
 }
 
+variable "external_ssh_cidr" {
+  description = "The cidr block to use for external ssh security groups"
+  type = "string"
+  default = "0.0.0.0/0"
+}
+
 module "defaults" {
   source = "./defaults"
   region = "${var.region}"
@@ -169,6 +175,7 @@ module "security_groups" {
   vpc_id      = "${module.vpc.id}"
   environment = "${var.environment}"
   cidr        = "${var.cidr}"
+  external_ssh_cidr = "${var.external_ssh_cidr}"
 }
 
 module "bastion" {

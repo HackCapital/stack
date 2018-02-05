@@ -18,6 +18,12 @@ variable "cidr" {
   description = "The cidr block to use for internal security groups"
 }
 
+variable "external_ssh_cidr" {
+  description = "The cidr block to use for external ssh security groups"
+  type = "string"
+  default = "0.0.0.0/0"
+}
+
 resource "aws_security_group" "internal_elb" {
   name        = "${format("%s-%s-internal-elb", var.name, var.environment)}"
   vpc_id      = "${var.vpc_id}"
@@ -92,7 +98,7 @@ resource "aws_security_group" "external_ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.external_ssh_cidr}"]
   }
 
   egress {
