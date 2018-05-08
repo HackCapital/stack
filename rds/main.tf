@@ -134,6 +134,11 @@ resource "aws_db_subnet_group" "main" {
   subnet_ids  = ["${var.subnet_ids}"]
 }
 
+resource "aws_kms_key" "postgres" {
+  description             = "Postgres encryption key"
+  deletion_window_in_days = 30
+}
+
 resource "aws_db_instance" "main" {
   identifier = "${var.name}"
 
@@ -161,6 +166,7 @@ resource "aws_db_instance" "main" {
   db_subnet_group_name   = "${aws_db_subnet_group.main.id}"
   vpc_security_group_ids = ["${aws_security_group.main.id}"]
   publicly_accessible    = "${var.publicly_accessible}"
+  kms_key_id             = "${aws_kms_key.postgres.arn}"
 }
 
 output "addr" {
