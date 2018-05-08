@@ -166,6 +166,7 @@ resource "aws_db_instance" "main" {
   db_subnet_group_name   = "${aws_db_subnet_group.main.id}"
   vpc_security_group_ids = ["${aws_security_group.main.id}"]
   publicly_accessible    = "${var.publicly_accessible}"
+  storage_encrypted      = true
   kms_key_id             = "${aws_kms_key.postgres.arn}"
 }
 
