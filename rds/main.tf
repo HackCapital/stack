@@ -97,6 +97,12 @@ variable "subnet_ids" {
   type        = "list"
 }
 
+variable "kms_key_id" {
+  description = "The key that is used for postgres encryption"
+  type        = "string"
+  default     = "${aws_kms_key.postgres.arn}"
+}
+
 resource "aws_security_group" "main" {
   name        = "${var.name}-rds"
   description = "Allows traffic to RDS from other security groups"
@@ -134,7 +140,7 @@ resource "aws_db_subnet_group" "main" {
   subnet_ids  = ["${var.subnet_ids}"]
 }
 
-resource "aws_kms_key" "postgres-finn-demo-stg" {
+resource "aws_kms_key" "postgres" {
   description             = "Postgres encryption key"
   deletion_window_in_days = 30
 }
@@ -167,7 +173,7 @@ resource "aws_db_instance" "main" {
   vpc_security_group_ids = ["${aws_security_group.main.id}"]
   publicly_accessible    = "${var.publicly_accessible}"
   storage_encrypted      = true
-  kms_key_id             = "${aws_kms_key.postgres-finn-demo-stg.arn}"
+  kms_key_id             = "${var.kms_key_id}"
 }
 
 output "addr" {
