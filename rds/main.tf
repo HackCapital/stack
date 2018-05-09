@@ -100,7 +100,6 @@ variable "subnet_ids" {
 variable "kms_key_id" {
   description = "The key that is used for postgres encryption"
   type        = "string"
-  default     = "${aws_kms_key.postgres.arn}"
 }
 
 resource "aws_security_group" "main" {
