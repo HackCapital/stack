@@ -167,7 +167,6 @@ resource "aws_db_instance" "main" {
   vpc_security_group_ids = ["${aws_security_group.main.id}"]
   publicly_accessible    = "${var.publicly_accessible}"
   storage_encrypted      = true
-  kms_key_id             = "${var.kms_key_id}"
 }
 
 output "addr" {
