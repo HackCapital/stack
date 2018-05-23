@@ -1,84 +1,85 @@
 variable account_id {}
 variable metadata {}
-resource "aws_iam_policy" "billing" {
-  arn = "arn:aws:iam::aws:policy/job-function/Billing"
-}
 
-resource "aws_iam_policy" "cloudwatch_full" {
-  arn = "arn:aws:iam::aws:policy/CloudWatchFullAccess"
-}
+# resource "aws_iam_policy" "billing" {
+#   arn = "arn:aws:iam::aws:policy/job-function/Billing"
+# }
 
-resource "aws_iam_policy" "cloudwatch_read" {
-  arn = "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess"
-}
+# resource "aws_iam_policy" "cloudwatch_full" {
+#   arn = "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+# }
 
-resource "aws_iam_policy" "ec2_read" {
-  arn = "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
-}
+# resource "aws_iam_policy" "cloudwatch_read" {
+#   arn = "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess"
+# }
 
-resource "aws_iam_policy" "ec2_full" {
-  arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-}
+# resource "aws_iam_policy" "ec2_read" {
+#   arn = "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+# }
 
-resource "aws_iam_policy" "ec2_container_service_read" {
-  arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-}
+# resource "aws_iam_policy" "ec2_full" {
+#   arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+# }
 
-resource "aws_iam_policy" "ec2_container_service_full" {
-  arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerServiceFullAccess"
-}
+# resource "aws_iam_policy" "ec2_container_service_read" {
+#   arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+# }
 
-resource "aws_iam_policy" "vpc_read" {
-  arn = "arn:aws:iam::aws:policy/AmazonVPCReadOnlyAccess"
-}
+# resource "aws_iam_policy" "ec2_container_service_full" {
+#   arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerServiceFullAccess"
+# }
 
-resource "aws_iam_policy" "kinesis_read" {
-  arn = "arn:aws:iam::aws:policy/AmazonKinesisReadOnlyAccess"
-}
+# resource "aws_iam_policy" "vpc_read" {
+#   arn = "arn:aws:iam::aws:policy/AmazonVPCReadOnlyAccess"
+# }
 
-resource "aws_iam_policy" "kinesis_full" {
-  arn = "arn:aws:iam::aws:policy/AmazonKinesisFullAccess"
-}
+# resource "aws_iam_policy" "kinesis_read" {
+#   arn = "arn:aws:iam::aws:policy/AmazonKinesisReadOnlyAccess"
+# }
 
-resource "aws_iam_policy" "elasticache_read" {
-  arn = "arn:aws:iam::aws:policy/AmazonElastiCacheReadOnlyAccess"
-}
+# resource "aws_iam_policy" "kinesis_full" {
+#   arn = "arn:aws:iam::aws:policy/AmazonKinesisFullAccess"
+# }
 
-resource "aws_iam_policy" "elasticache_full" {
-  arn = "arn:aws:iam::aws:policy/AmazonElastiCacheFullAccess"
-}
+# resource "aws_iam_policy" "elasticache_read" {
+#   arn = "arn:aws:iam::aws:policy/AmazonElastiCacheReadOnlyAccess"
+# }
 
-resource "aws_iam_policy" "s3_read" {
-  arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
-}
+# resource "aws_iam_policy" "elasticache_full" {
+#   arn = "arn:aws:iam::aws:policy/AmazonElastiCacheFullAccess"
+# }
 
-resource "aws_iam_policy" "s3_full" {
-  arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-}
+# resource "aws_iam_policy" "s3_read" {
+#   arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+# }
 
-resource "aws_iam_policy" "cloudtrail_read" {
-  arn = "arn:aws:iam::aws:policy/AWSCloudTrailReadOnlyAccess"
-}
+# resource "aws_iam_policy" "s3_full" {
+#   arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+# }
 
-resource "aws_iam_policy" "rds_read" {
-  arn = "arn:aws:iam::aws:policy/AmazonRDSReadOnlyAccess"
-}
+# resource "aws_iam_policy" "cloudtrail_read" {
+#   arn = "arn:aws:iam::aws:policy/AWSCloudTrailReadOnlyAccess"
+# }
 
-resource "aws_iam_policy" "lambda_read" {
-  arn = "arn:aws:iam::aws:policy/AWSLambdaReadOnlyAccess"
-}
+# resource "aws_iam_policy" "rds_read" {
+#   arn = "arn:aws:iam::aws:policy/AmazonRDSReadOnlyAccess"
+# }
 
-resource "aws_iam_policy" "lambda_full" {
-  arn = "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
-}
+# resource "aws_iam_policy" "lambda_read" {
+#   arn = "arn:aws:iam::aws:policy/AWSLambdaReadOnlyAccess"
+# }
 
-resource "aws_iam_policy" "macie_full" {
-  arn = "arn:aws:iam::aws:policy/AmazonMacieFullAccess"
-}
+# resource "aws_iam_policy" "lambda_full" {
+#   arn = "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
+# }
 
-resource "aws_iam_policy" "iam_read" {
-  arn = "arn:aws:iam::aws:policy/IAMReadOnlyAccess"
-}
+# resource "aws_iam_policy" "macie_full" {
+#   arn = "arn:aws:iam::aws:policy/AmazonMacieFullAccess"
+# }
+
+# resource "aws_iam_policy" "iam_read" {
+#   arn = "arn:aws:iam::aws:policy/IAMReadOnlyAccess"
+# }
 
 resource "aws_iam_saml_provider" "okta" {
   name                   = "Okta"
