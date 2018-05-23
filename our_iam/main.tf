@@ -1,3 +1,5 @@
+variable account_id {}
+variable metadata {}
 resource "aws_iam_policy" "billing" {
   arn = "arn:aws:iam::aws:policy/job-function/Billing"
 }
@@ -94,7 +96,7 @@ resource "aws_iam_role" "billing-okta-sso-role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
+        "Federated": "arn:aws:iam::${var.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
       },
       "Action": "sts:AssumeRoleWithSAML",
       "Condition": {
@@ -124,7 +126,7 @@ resource "aws_iam_role" "admin-okta-sso-role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
+        "Federated": "arn:aws:iam::${var.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
       },
       "Action": "sts:AssumeRoleWithSAML",
       "Condition": {
@@ -154,7 +156,7 @@ resource "aws_iam_role" "audit-okta-sso-role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
+        "Federated": "arn:aws:iam::${var.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
       },
       "Action": "sts:AssumeRoleWithSAML",
       "Condition": {
@@ -214,7 +216,7 @@ resource "aws_iam_role" "cloudwatch-okta-sso-role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
+        "Federated": "arn:aws:iam::${var.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
       },
       "Action": "sts:AssumeRoleWithSAML",
       "Condition": {
@@ -244,7 +246,7 @@ resource "aws_iam_role" "developer-okta-sso-role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
+        "Federated": "arn:aws:iam::${var.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
       },
       "Action": "sts:AssumeRoleWithSAML",
       "Condition": {
@@ -314,7 +316,7 @@ resource "aws_iam_role" "deployer-okta-sso-role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
+        "Federated": "arn:aws:iam::${var.account_id}:saml-provider/${aws_iam_saml_provider.okta.name}"
       },
       "Action": "sts:AssumeRoleWithSAML",
       "Condition": {
