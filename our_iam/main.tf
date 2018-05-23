@@ -82,7 +82,7 @@ resource "aws_iam_policy" "iam_read" {
 
 resource "aws_iam_saml_provider" "okta" {
   name                   = "Okta"
-  saml_metadata_document = "${file("../../metadata.xml")}"
+  saml_metadata_document = "${var.metadata}"
 }
 
 resource "aws_iam_role" "billing-okta-sso-role" {
