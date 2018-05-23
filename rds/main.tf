@@ -97,6 +97,11 @@ variable "subnet_ids" {
   type        = "list"
 }
 
+variable "kms_key_id" {
+  description = "The key that is used for postgres encryption"
+  type        = "string"
+}
+
 resource "aws_security_group" "main" {
   name        = "${var.name}-rds"
   description = "Allows traffic to RDS from other security groups"
@@ -161,6 +166,7 @@ resource "aws_db_instance" "main" {
   db_subnet_group_name   = "${aws_db_subnet_group.main.id}"
   vpc_security_group_ids = ["${aws_security_group.main.id}"]
   publicly_accessible    = "${var.publicly_accessible}"
+  storage_encrypted      = true
 }
 
 output "addr" {
