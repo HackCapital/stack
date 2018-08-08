@@ -113,6 +113,7 @@ resource "aws_alb_listener" "service_https" {
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2015-05"
   certificate_arn   = "${var.ssl_certificate_id}"
+  depends_on        = ["aws_alb_target_group.main"]
 
   default_action {
     target_group_arn = "${aws_alb_target_group.main.arn}"
@@ -124,6 +125,7 @@ resource "aws_alb_listener" "service_http" {
   load_balancer_arn = "${aws_alb.main.arn}"
   port              = "80"
   protocol          = "HTTP"
+  depends_on        = ["aws_alb_target_group.main"]
 
   default_action {
     target_group_arn = "${aws_alb_target_group.main.arn}"
